@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+
+<cc:interface>
+    <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.DonoBean" required="true" />
+</cc:interface>
+
+<cc:implementation>
+    <p:messages id="mensagens" styleClass="mb-4" />
+
+    <p:panel header="Dados do dono" styleClass="petshop-panel mb-5">
+        <h:form id="formulario">
+            <div class="grid">
+                <div class="col-12 md:col-6">
+                    <p:outputLabel for="nome" value="Nome" styleClass="block font-semibold mb-2" />
+                    <p:inputText id="nome" value="#{cc.attrs.bean.dono.nome}" styleClass="w-full" />
+                </div>
+
+                <div class="col-12 md:col-6">
+                    <p:outputLabel for="telefone" value="Telefone" styleClass="block font-semibold mb-2" />
+                    <p:inputText id="telefone" value="#{cc.attrs.bean.dono.telefone}" styleClass="w-full" />
+                </div>
+
+                <div class="col-12">
+                    <p:outputLabel for="email" value="E-mail" styleClass="block font-semibold mb-2" />
+                    <p:inputText id="email" value="#{cc.attrs.bean.dono.email}" styleClass="w-full" />
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-6 mt-3">
+                <p:commandButton value="Salvar"
+                                 icon="pi pi-check"
+                                 action="#{cc.attrs.bean.salvar}"
+                                 update="@form :lista:formulario :cadastro:mensagens" />
+                <p:commandButton value="Novo"
+                                 icon="pi pi-plus"
+                                 styleClass="ui-button-outlined"
+                                 action="#{cc.attrs.bean.novo}"
+                                 update="@form :cadastro:mensagens"
+                                 process="@this" />
+            </div>
+        </h:form>
+    </p:panel>
+</cc:implementation>
+
+</html>

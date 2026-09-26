@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:dono="jakarta.faces.composite/components/dono"
+      xmlns:doutor="jakarta.faces.composite/components/doutor">
+
+<h:head>
+    <title>Cadastros do petshop</title>
+    <h:outputStylesheet
+            library="webjars"
+            name="primeflex/4.0.0/primeflex.min.css" />
+    <style>
+        body {
+            margin: 0;
+            background: #f4f7f6;
+            color: #243332;
+            font-family: Arial, sans-serif;
+        }
+
+        .petshop-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .petshop-title {
+            color: #174c4a;
+            letter-spacing: -0.02em;
+        }
+
+        .petshop-subtitle {
+            color: #61706e;
+        }
+
+        .petshop-panel {
+            border: 1px solid #dce7e4;
+            border-radius: 12px;
+        }
+
+        .petshop-panel .ui-panel-titlebar {
+            background: #e8f2ef;
+            color: #174c4a;
+            border: 0;
+        }
+    </style>
+</h:head>
+
+<h:body styleClass="surface-ground">
+    <div class="petshop-shell p-5 md:p-6">
+        <div class="mb-3">
+            <div class="text-sm font-semibold text-teal-700 mb-2">PETSHOP</div>
+            <h1 class="petshop-title text-4xl font-bold m-0">Cadastros do petshop</h1>
+            <p class="petshop-subtitle text-lg mt-2 mb-0">
+                Gerencie os donos e doutores do petshop.
+            </p>
+        </div>
+
+        <dono:formulario-dono id="cadastro" bean="#{donoBean}" />
+        <dono:tabela-donos id="lista" bean="#{donoBean}" />
+
+        <doutor:formulario-doutor id="cadastroDoutor" bean="#{doutorBean}" />
+        <doutor:tabela-doutores id="listaDoutores" bean="#{doutorBean}" />
+    </div>
+</h:body>
+</html>

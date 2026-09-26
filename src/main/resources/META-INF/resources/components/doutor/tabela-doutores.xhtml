@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+
+<cc:interface>
+    <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.DoutorBean" required="true" />
+</cc:interface>
+
+<cc:implementation>
+    <p:panel header="Lista de doutores" styleClass="petshop-panel">
+        <h:form id="formulario">
+            <p:dataTable id="tabela" value="#{cc.attrs.bean.doutores}" var="doutor"
+                         responsiveLayout="scroll" rowHover="true">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{doutor.nome}" />
+                </p:column>
+
+                <p:column headerText="CRMV">
+                    <h:outputText value="#{doutor.crmv}" />
+                </p:column>
+
+                <p:column headerText="Telefone">
+                    <h:outputText value="#{doutor.telefone}" />
+                </p:column>
+
+                <p:column headerText="Ações" styleClass="white-space-nowrap">
+                    <p:commandButton icon="pi pi-pencil"
+                                     title="Editar"
+                                     styleClass="ui-button-text mr-2"
+                                     action="#{cc.attrs.bean.editar(doutor)}"
+                                     update="@form :cadastroDoutor:formulario"
+                                     process="@this" />
+                    <p:commandButton icon="pi pi-trash"
+                                     title="Excluir"
+                                     styleClass="ui-button-text ui-button-danger"
+                                     action="#{cc.attrs.bean.excluir(doutor.id)}"
+                                     update="@form :cadastroDoutor:formulario"
+                                     process="@this" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </p:panel>
+</cc:implementation>
+
+</html>
