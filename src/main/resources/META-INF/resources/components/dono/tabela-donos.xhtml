@@ -6,10 +6,13 @@
 
 <cc:interface>
     <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.DonoBean" required="true" />
+    <cc:attribute name="styleClass" default="" />
 </cc:interface>
 
 <cc:implementation>
-    <p:panel header="Lista de donos" styleClass="petshop-panel">
+    <div class="#{cc.attrs.styleClass}">
+    <p:panel header="Lista de donos"
+             styleClass="border-1 border-solid border-gray-200 border-round-lg mb-4 h-full p-3">
         <h:form id="formulario">
             <p:dataTable id="tabela" value="#{cc.attrs.bean.donos}" var="dono"
                          responsiveLayout="scroll" rowHover="true">
@@ -42,6 +45,7 @@
             </p:dataTable>
         </h:form>
     </p:panel>
+    </div>
 </cc:implementation>
 
 </html>

@@ -6,10 +6,13 @@
 
 <cc:interface>
     <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.DoutorBean" required="true" />
+    <cc:attribute name="styleClass" default="" />
 </cc:interface>
 
 <cc:implementation>
-    <p:panel header="Lista de doutores" styleClass="petshop-panel">
+    <div class="#{cc.attrs.styleClass}">
+    <p:panel header="Lista de doutores"
+             styleClass="border-1 border-solid border-gray-200 border-round-lg mb-4 p-3 h-full">
         <h:form id="formulario">
             <p:dataTable id="tabela" value="#{cc.attrs.bean.doutores}" var="doutor"
                          responsiveLayout="scroll" rowHover="true">
@@ -42,6 +45,7 @@
             </p:dataTable>
         </h:form>
     </p:panel>
+    </div>
 </cc:implementation>
 
 </html>

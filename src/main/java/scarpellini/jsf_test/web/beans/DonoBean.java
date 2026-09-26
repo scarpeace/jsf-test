@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import scarpellini.jsf_test.domain.Dono;
 import scarpellini.jsf_test.service.DonoService;
+import scarpellini.jsf_test.web.dto.DonoRequest;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,7 +20,7 @@ public class DonoBean implements Serializable {
     @Inject
     private DonoService donoService;
 
-    private Dono dono;
+    private DonoRequest donoRequest;
     private List<Dono> donos;
 
     @PostConstruct
@@ -33,17 +34,30 @@ public class DonoBean implements Serializable {
     }
 
     public void novo() {
-        dono = new Dono();
+        donoRequest = new DonoRequest();
     }
 
-    public void salvar() {
-        donoService.salvar(dono);
+    public void criar() {
+        donoService.criar(donoRequest.toEntity());
+        concluirOperacao();
+    }
+
+    public void atualizar() {
+        donoService.atualizar(donoRequest.getId(), donoRequest.toEntity());
+        concluirOperacao();
+    }
+
+    private void concluirOperacao() {
         listar();
         novo();
     }
 
     public void editar(Dono dono) {
-        this.dono = dono;
+        donoRequest = new DonoRequest();
+        donoRequest.setId(dono.getId());
+        donoRequest.setNome(dono.getNome());
+        donoRequest.setTelefone(dono.getTelefone());
+        donoRequest.setEmail(dono.getEmail());
     }
 
     public void excluir(Long id) {
@@ -51,12 +65,12 @@ public class DonoBean implements Serializable {
         listar();
     }
 
-    public Dono getDono() {
-        return dono;
+    public DonoRequest getDonoRequest() {
+        return donoRequest;
     }
 
-    public void setDono(Dono dono) {
-        this.dono = dono;
+    public void setDonoRequest(DonoRequest donoRequest) {
+        this.donoRequest = donoRequest;
     }
 
     public List<Dono> getDonos() {

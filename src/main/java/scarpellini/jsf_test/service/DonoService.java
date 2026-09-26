@@ -30,7 +30,16 @@ public class DonoService {
     }
 
     @Transactional
-    public Dono salvar(Dono dono) {
+    public Dono criar(Dono dono) {
+        return donoRepository.save(dono);
+    }
+
+    @Transactional
+    public Dono atualizar(Long id, Dono dados) {
+        Dono dono = buscarPorId(id);
+        dono.setNome(dados.getNome());
+        dono.setTelefone(dados.getTelefone());
+        dono.setEmail(dados.getEmail());
         return donoRepository.save(dono);
     }
 
