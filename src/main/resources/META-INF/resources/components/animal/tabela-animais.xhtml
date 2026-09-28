@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+
+<cc:interface>
+    <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.AnimalBean" required="true" />
+    <cc:attribute name="styleClass" default="" />
+</cc:interface>
+
+<cc:implementation>
+    <div class="#{cc.attrs.styleClass}">
+        <p:panel header="Animais cadastrados"
+                 styleClass="border-1 border-solid border-gray-200 border-round-lg mb-4 p-3 h-full">
+            <h:form id="formulario">
+                <p:dataTable id="tabela" value="#{cc.attrs.bean.animais}" var="animal"
+                             emptyMessage="Nenhum animal cadastrado."
+                             responsiveLayout="scroll" rowHover="true">
+                    <p:column headerText="Animal">
+                        <h:outputText value="#{animal.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Espécie">
+                        <h:outputText value="#{animal.especie.descricao}" />
+                    </p:column>
+
+                    <p:column headerText="Raça">
+                        <h:outputText value="#{animal.raca}" />
+                    </p:column>
+
+                    <p:column headerText="Nascimento">
+                        <h:outputText value="#{animal.dataNascimento}" />
+                    </p:column>
+
+                    <p:column headerText="Dono">
+                        <h:outputText value="#{animal.nomeDono}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </div>
+</cc:implementation>
+
+</html>

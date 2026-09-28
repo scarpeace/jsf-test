@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import scarpellini.jsf_test.domain.Animal;
 import scarpellini.jsf_test.domain.Dono;
 import scarpellini.jsf_test.repository.AnimalRepository;
+import scarpellini.jsf_test.repository.DonoRepository;
 
 import java.util.List;
 
@@ -13,19 +14,19 @@ import java.util.List;
 public class AnimalService {
 
     private final AnimalRepository animalRepository;
-    private final DonoService donoService;
+    private final DonoRepository donoRepo;
 
     public AnimalService(
             AnimalRepository animalRepository,
-            DonoService donoService
+            DonoRepository donoRepo
     ) {
         this.animalRepository = animalRepository;
-        this.donoService = donoService;
+        this.donoRepo = donoRepo;
     }
 
     @Transactional(readOnly = true)
-    public List<Animal> listarTodos() {
-        return animalRepository.findAll();
+    public List<Animal> listarTodosComDono() {
+        return animalRepository.findAllComDono();
     }
 
     @Transactional(readOnly = true)
@@ -36,17 +37,17 @@ public class AnimalService {
     }
 
     @Transactional
-    public Animal salvar(Animal animal) {
-        if (animal.getDono() == null || animal.getDono().getId() == null) {
-            throw new IllegalArgumentException(
-                    "O animal precisa possuir um dono"
-            );
-        }
+    public Animal cadastrar(Animal animal, Dono dono) {
+        Dono novoDono = donoRepo.save(dono);
+        Animal novoAnimal = new Animal(
+                animal.getNome(),
+                animal.getEspecie(),
+                animal.getRaca(),
+                animal.getDataNascimento(),
+                novoDono
+        );
 
-        Dono dono = donoService.buscarPorId(animal.getDono().getId());
-        animal.setDono(dono);
-
-        return animalRepository.save(animal);
+        return animalRepository.save(novoAnimal);
     }
 
     @Transactional

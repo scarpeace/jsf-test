@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<cc:interface>
+    <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.AnimalBean" required="true" />
+    <cc:attribute name="styleClass" default="" />
+</cc:interface>
+
+<cc:implementation>
+    <div class="#{cc.attrs.styleClass}">
+        <p:panel header="Registro de novo Paciente"
+                 styleClass="border-1 border-solid border-gray-200 border-round-lg p-3">
+            <h:form id="formulario">
+                <p:messages id="mensagens" showDetail="true" />
+
+                <div class="text-lg font-semibold mb-3">Dados do animal</div>
+                <div class="grid">
+                    <div class="field col-12">
+                        <p:outputLabel for="nomeAnimal" value="Nome do animal" styleClass="block font-semibold" />
+                        <p:inputText id="nomeAnimal" value="#{cc.attrs.bean.animalRequest.nome}" styleClass="w-full" />
+                        <p:message for="nomeAnimal" />
+                    </div>
+
+                    <div class="field col-12 md:col-12 xl:col-8">
+                        <p:outputLabel for="dataNascimento" value="Data de nascimento" styleClass="font-semibold" />
+                        <p:datePicker id="dataNascimento"
+                                      value="#{cc.attrs.bean.animalRequest.dataNascimento}"
+                                      pattern="dd/MM/yyyy"
+                                      placeholder="dd / MM / yyyy"
+                                      mask="99/99/9999"
+                                      styleClass="font-bold"
+                                      showIcon="true"
+                                      showOnFocus="false"
+                                       />
+                    </div>
+
+                    <div class="field col-12 md:col-6 xl:col-4">
+                        <p:outputLabel for="especie" value="Espécie" styleClass="font-semibold"/>
+                        <p:selectOneMenu id="especie" value="#{cc.attrs.bean.animalRequest.especie}">
+                            <f:selectItem itemLabel="Selecione" itemValue="#{null}"/>
+                            <f:selectItems value="#{cc.attrs.bean.especies}"/>
+                        </p:selectOneMenu>
+                        <p:message for="especie" />
+                    </div>
+
+                    <div class="field col-12 md:col-6 xl:col-12">
+                        <p:outputLabel for="raca" value="Raça" styleClass="font-semibold mb-2" />
+                        <p:inputText id="raca" value="#{cc.attrs.bean.animalRequest.raca}" styleClass="w-full" />
+                    </div>
+
+                </div>
+
+                <div class="text-lg font-semibold mt-3 mb-3">Dados do dono</div>
+                <div class="grid">
+                    <div class="col-12">
+                        <p:outputLabel for="nomeDono" value="Nome do dono" styleClass="font-semibold mb-2" />
+                        <p:inputText id="nomeDono" value="#{cc.attrs.bean.animalRequest.dono.nome}" styleClass="w-full" />
+                        <p:message for="nomeDono" />
+                    </div>
+
+                    <div class="col-12 md:col-6">
+                        <p:outputLabel for="telefone" value="Telefone" styleClass="font-semibold mb-2" />
+                        <p:inputText id="telefone" value="#{cc.attrs.bean.animalRequest.dono.telefone}" styleClass="w-full" />
+                    </div>
+
+                    <div class="col-12 md:col-6">
+                        <p:outputLabel for="email" value="E-mail" styleClass="font-semibold mb-2" />
+                        <p:inputText id="email" value="#{cc.attrs.bean.animalRequest.dono.email}" styleClass="w-full" />
+                        <p:message for="email" />
+                    </div>
+                </div>
+
+                <p:commandButton value="Cadastrar"
+                                 styleClass="justify-content-end"
+                                 icon="pi pi-check"
+                                 action="#{cc.attrs.bean.criar}"
+                                 update="@form :lista:formulario" />
+            </h:form>
+        </p:panel>
+    </div>
+</cc:implementation>
+
+</html>
