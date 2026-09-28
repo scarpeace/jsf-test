@@ -4,9 +4,11 @@ import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import scarpellini.jsf_test.domain.Dono;
+import lombok.Getter;
+import lombok.Setter;
 import scarpellini.jsf_test.service.DonoService;
 import scarpellini.jsf_test.web.dto.DonoRequest;
+import scarpellini.jsf_test.web.dto.DonoResponseDto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,8 +22,11 @@ public class DonoBean implements Serializable {
     @Inject
     private DonoService donoService;
 
+    @Setter
+    @Getter
     private DonoRequest donoRequest;
-    private List<Dono> donos;
+    @Getter
+    private List<DonoResponseDto> donos;
 
     @PostConstruct
     public void inicializar() {
@@ -30,7 +35,9 @@ public class DonoBean implements Serializable {
     }
 
     public void listar() {
-        donos = donoService.listarTodos();
+        donos = donoService.listarTodos().stream()
+                .map(DonoResponseDto::toDto)
+                .toList();
     }
 
     public void novo() {
@@ -52,7 +59,7 @@ public class DonoBean implements Serializable {
         novo();
     }
 
-    public void editar(Dono dono) {
+    public void editar(DonoResponseDto dono) {
         donoRequest = new DonoRequest();
         donoRequest.setId(dono.getId());
         donoRequest.setNome(dono.getNome());
@@ -65,15 +72,4 @@ public class DonoBean implements Serializable {
         listar();
     }
 
-    public DonoRequest getDonoRequest() {
-        return donoRequest;
-    }
-
-    public void setDonoRequest(DonoRequest donoRequest) {
-        this.donoRequest = donoRequest;
-    }
-
-    public List<Dono> getDonos() {
-        return donos;
-    }
 }
