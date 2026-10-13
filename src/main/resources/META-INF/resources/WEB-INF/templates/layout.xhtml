@@ -9,29 +9,58 @@
 
 <h:head>
     <title><ui:insert name="title">Petshop</ui:insert></title>
-    <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>
+
+<!--    Primeflex-->
+<!--    <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>-->
+
+    <!--    Estilos SESC-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/erp/style.css" />
+    <h:outputScript library="js" name="${pageContext.request.contextPath}/js/erp/funcoes.js" target="head"/>
 </h:head>
 
 <h:body styleClass="surface-ground text-color m-0">
-    <div class="card">
-        <h:form styleClass="items-center">
-            <p:growl id="messages"/>
-            <p:menubar hideDelay="1000">
-                <f:facet name="start">
-                     <!-- Aqui eu também poderia estilizar com o primeflex pra colocar as classes de responsividade -->
-                    <p:graphicImage library="images" name="sesc_logo.svg" alt="Logo Sesc" width="60" height="30"/>
-                </f:facet>
 
-                <p:menuitem value="Consultas" icon="pi pi-calendar pi-align-left" url="/pages/consultas.xhtml"/>
-                <p:menuitem value="Pacientes" icon="pi pi-user-plus" url="/pages/pacientes.xhtml"/>
-                <p:menuitem value="Veterinários" icon="pi pi-plus-circle" url="/pages/veterinarios.xhtml"/>
+    <h:form id="frmmenu">
+        <nav class="menu-bar">
 
-                <f:facet name="end">
-                    <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
-                </f:facet>
+            <p:menubar styleClass="w-100">
+                <p:submenu label="Componentes" >
+                    <p:menuitem value="Formulários" outcome="/index.xhtml"/>
+                    <p:menuitem value="Crud" outcome="/index.xhtml" />
+                    <p:menuitem value="Slide Dialog" outcome="/index.xhtml" />
+                </p:submenu>
+
+                <p:submenu label="Erros" >
+                    <p:menuitem value="Browser" outcome="/index.xhtml" />
+                    <p:menuitem value="Generic" outcome="/index.xhtml" />
+                    <p:menuitem value="Not Found" outcome="/index.xhtml" />
+                    <p:menuitem value="Permissão" outcome="/index.xhtml" />
+                    <p:menuitem value="Sessão" outcome="/index.xhtml" />
+                    <p:menuitem value="SQL" outcome="/index.xhtml" />
+                </p:submenu>
+
+                <p:submenu label="Erros" >
+                    <p:menuitem value="Browser" outcome="/index.xhtml" />
+                    <p:menuitem value="Generic" outcome="/index.xhtml" />
+                    <p:menuitem value="Not Found" outcome="/index.xhtml" />
+                    <p:menuitem value="Permissão" outcome="/index.xhtml" />
+                    <p:menuitem value="Sessão" outcome="/index.xhtml" />
+                    <p:menuitem value="SQL" outcome="/index.xhtml" />
+                </p:submenu>
+
+                <!-- logout opcional na menubar -->
+                <p:menuitem
+                        icon="fa fas fa-sign-out-alt"
+                        iconPos="right"
+                        styleClass="f-right"
+                        value="Sair"
+                        process="@this"
+                        immediate="true"
+                        update="@none"
+                        containerStyleClass="f-right" />
             </p:menubar>
-        </h:form>
-    </div>
+        </nav>
+    </h:form>
 
     <main class="w-full p-5 md:p-6">
         <ui:insert name="content"/>

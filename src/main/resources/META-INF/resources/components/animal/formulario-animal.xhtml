@@ -3,7 +3,9 @@
       xmlns:cc="jakarta.faces.composite"
       xmlns:h="jakarta.faces.html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:sesc="http://xmlns.jcp.org/jsf/composite/sesc">
+>
 
 <cc:interface>
     <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.AnimalBean" required="true" />
@@ -18,14 +20,14 @@
                 <p:messages id="mensagens" showDetail="true" />
 
                 <div class="text-lg font-semibold mb-3">Dados do animal</div>
-                <div class="grid">
-                    <div class="field col-12">
+                <div class="formgrid grid">
+                    <div class="field col-12 md:col-6">
                         <p:outputLabel for="nomeAnimal" value="Nome do animal" styleClass="block font-semibold" />
                         <p:inputText id="nomeAnimal" value="#{cc.attrs.bean.animalRequest.nome}" styleClass="w-full" />
                         <p:message for="nomeAnimal" />
                     </div>
 
-                    <div class="field col-12 md:col-12 xl:col-8">
+                    <div class="field col-12 md:col-4">
                         <p:outputLabel for="dataNascimento" value="Data de nascimento" styleClass="font-semibold" />
                         <p:datePicker id="dataNascimento"
                                       value="#{cc.attrs.bean.animalRequest.dataNascimento}"
@@ -38,7 +40,7 @@
                                        />
                     </div>
 
-                    <div class="field col-12 md:col-6 xl:col-4">
+                    <div class="field col-12 md:col-2">
                         <p:outputLabel for="especie" value="Espécie" styleClass="font-semibold"/>
                         <p:selectOneMenu id="especie" value="#{cc.attrs.bean.animalRequest.especie}">
                             <f:selectItem itemLabel="Selecione" itemValue="#{null}"/>
@@ -47,27 +49,26 @@
                         <p:message for="especie" />
                     </div>
 
-                    <div class="field col-12 md:col-6 xl:col-12">
+                    <div class="field col-12 md:col-6">
                         <p:outputLabel for="raca" value="Raça" styleClass="font-semibold mb-2" />
                         <p:inputText id="raca" value="#{cc.attrs.bean.animalRequest.raca}" styleClass="w-full" />
                     </div>
-
                 </div>
 
-                <div class="text-lg font-semibold mt-3 mb-3">Dados do dono</div>
-                <div class="grid">
-                    <div class="col-12">
+                <div class="text-lg font-semibold mb-3 mt-3">Dados do dono</div>
+                <div class="formgrid grid">
+                    <div class="field col-12">
                         <p:outputLabel for="nomeDono" value="Nome do dono" styleClass="font-semibold mb-2" />
                         <p:inputText id="nomeDono" value="#{cc.attrs.bean.animalRequest.dono.nome}" styleClass="w-full" />
                         <p:message for="nomeDono" />
                     </div>
 
-                    <div class="col-12 md:col-6">
+                    <div class="field col-12 md:col-6">
                         <p:outputLabel for="telefone" value="Telefone" styleClass="font-semibold mb-2" />
                         <p:inputText id="telefone" value="#{cc.attrs.bean.animalRequest.dono.telefone}" styleClass="w-full" />
                     </div>
 
-                    <div class="col-12 md:col-6">
+                    <div class="field col-12 md:col-6">
                         <p:outputLabel for="email" value="E-mail" styleClass="font-semibold mb-2" />
                         <p:inputText id="email" value="#{cc.attrs.bean.animalRequest.dono.email}" styleClass="w-full" />
                         <p:message for="email" />

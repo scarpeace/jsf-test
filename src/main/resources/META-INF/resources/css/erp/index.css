@@ -1,0 +1,105 @@
+.lista-index-wrapper.ui-panel .ui-panel-content {
+  padding: 10px;
+  margin: 0 0 30px 0;
+}
+.lista-index {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.lista-index li {
+  flex: 1;
+}
+.lista-index li[data-rendered] {
+  display: none;
+}
+.lista-index li[data-rendered*="true"] {
+  display: block;
+}
+.lista-index a {
+  display: block;
+  text-decoration: none;
+}
+.lista-index .title-lista-icon {
+  text-align: center;
+  color: #004c99;
+  background-color: #fff;
+  border: 2px solid #004c99;
+  font-family: "Iosevka SS07", monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: 2.6;
+  width: 40px;
+  height: 40px;
+  border-radius: 60px;
+  margin: 12px auto 0;
+  display: block;
+  text-decoration: none;
+  box-shadow: 0 0 0 3px #fff;
+  position: relative;
+  z-index: 2;
+}
+.title-lista {
+  font-family: "Iosevka SS07", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 20px 0 30px;
+  color: #004c99;
+  text-transform: uppercase;
+  display: block;
+}
+/**/
+.title-lista-icon + .links-container {
+  margin-top: -20px;
+  padding-top: 20px;
+}
+.title-lista + .links-container {
+  margin-top: 10px;
+}
+.links-container {
+  margin: 10px;
+  border: 1px solid #f0f0ee;
+  border-top: none;
+  box-shadow: inset 0 3px 0 0 #0088d5;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+.links-container .ui-link {
+  font-family: "Iosevka SS07", monospace;
+  font-weight: 300;
+  border-top: 1px solid #f0f0ee;
+  padding: 10px;
+  display: block;
+}
+.ui-widget .links-container .ui-link.ui-widget {
+  font-size: 14px;
+}
+.links-container a:hover {
+  background-color: #f8f8f6;
+}
+.links-container .ui-link:first-child {
+  border-top: none;
+}
+
+@media (max-width: 640px) {
+  .lista-index-wrapper.ui-panel .ui-panel-content {
+    margin-top: 0;
+  }
+  .lista-index {
+    display: block;
+    width: 100%;
+  }
+  .lista-index li {
+    display: block;
+  }
+  .title-lista {
+    padding: 0 10px;
+  }
+}
