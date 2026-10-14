@@ -36,6 +36,15 @@
                     <p:column headerText="Dono">
                         <h:outputText value="#{animal.nomeDono}" />
                     </p:column>
+
+                    <p:column headerText="Ações" styleClass="white-space-nowrap">
+                        <p:commandButton icon="pi pi-pencil"
+                                         title="Editar"
+                                         styleClass="ui-button-text"
+                                         action="#{cc.attrs.bean.editar(animal.id)}"
+                                         update=":cadastroAnimal:formulario"
+                                         process="@this" />
+                    </p:column>
                 </p:dataTable>
             </h:form>
         </p:panel>

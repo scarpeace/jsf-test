@@ -5,41 +5,41 @@
       xmlns:p="http://primefaces.org/ui">
 
 <cc:interface>
-    <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.DoutorBean" required="true" />
+    <cc:attribute name="bean" type="scarpellini.jsf_test.web.beans.VeterinarioBean" required="true" />
     <cc:attribute name="styleClass" default="" />
 </cc:interface>
 
 <cc:implementation>
     <div class="#{cc.attrs.styleClass}">
-    <p:panel header="Lista de doutores"
+    <p:panel header="Lista de veterinários"
              styleClass="border-1 border-solid border-gray-200 border-round-lg mb-4 p-3 h-full">
         <h:form id="formulario">
-            <p:dataTable id="tabela" value="#{cc.attrs.bean.doutores}" var="doutor"
+            <p:dataTable id="tabela" value="#{cc.attrs.bean.veterinarios}" var="veterinario"
                          responsiveLayout="scroll" rowHover="true">
                 <p:column headerText="Nome">
-                    <h:outputText value="#{doutor.nome}" />
+                    <h:outputText value="#{veterinario.nome}" />
                 </p:column>
 
                 <p:column headerText="CRMV">
-                    <h:outputText value="#{doutor.crmv}" />
+                    <h:outputText value="#{veterinario.crmv}" />
                 </p:column>
 
                 <p:column headerText="Telefone">
-                    <h:outputText value="#{doutor.telefone}" />
+                    <h:outputText value="#{veterinario.telefone}" />
                 </p:column>
 
                 <p:column headerText="Ações" styleClass="white-space-nowrap">
                     <p:commandButton icon="pi pi-pencil"
                                      title="Editar"
                                      styleClass="ui-button-text mr-2"
-                                     action="#{cc.attrs.bean.editar(doutor)}"
-                                     update="@form :cadastroDoutor:formulario"
+                                     action="#{cc.attrs.bean.editar(veterinario)}"
+                                     update="@form :cadastroVeterinario:formulario"
                                      process="@this" />
                     <p:commandButton icon="pi pi-trash"
                                      title="Excluir"
                                      styleClass="ui-button-text ui-button-danger"
-                                     action="#{cc.attrs.bean.excluir(doutor.id)}"
-                                     update="@form :cadastroDoutor:formulario"
+                                     action="#{cc.attrs.bean.excluir(veterinario.id)}"
+                                     update="@form :cadastroVeterinario:formulario"
                                      process="@this" />
                 </p:column>
             </p:dataTable>

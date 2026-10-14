@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:doutor="jakarta.faces.composite/components/doutor"
+                xmlns:veterinario="jakarta.faces.composite/components/veterinario"
                 template="/WEB-INF/templates/layout.xhtml">
     <ui:define name="title">Veterinários | Petshop</ui:define>
 
@@ -15,10 +15,10 @@
 
         <div class="grid justify-content-between">
             <div class="col-12 lg:col-4">
-                <doutor:formulario-doutor id="cadastroDoutor" bean="#{doutorBean}" styleClass="h-full" />
+                <veterinario:formulario-veterinario id="cadastroVeterinario" bean="#{veterinarioBean}" styleClass="h-full" />
             </div>
             <div class="col-12 lg:col-8">
-                <doutor:tabela-doutores id="listaDoutores" bean="#{doutorBean}" styleClass="h-full" />
+                <veterinario:tabela-veterinarios id="listaVeterinarios" bean="#{veterinarioBean}" styleClass="h-full" />
             </div>
         </div>
     </ui:define>

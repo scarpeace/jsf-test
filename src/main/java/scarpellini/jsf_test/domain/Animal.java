@@ -41,7 +41,28 @@ public class Animal {
     public Animal(String nome, Especie especie, String raca, LocalDate dataNascimento, Dono dono){
         this.nome=nome;
         this.especie=especie;
+        this.raca=raca;
         this.dataNascimento=dataNascimento;
         this.dono=dono;
+    }
+
+    public void setDono(Dono dono) {
+        this.dono = dono;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
+    }
+
+    public void setRaca(String raca) {
+        this.raca = raca;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

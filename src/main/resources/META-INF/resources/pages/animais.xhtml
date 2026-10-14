@@ -2,23 +2,23 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:animal="jakarta.faces.composite/components/animal"
                 template="/WEB-INF/templates/layout.xhtml">
-    <ui:define name="title">Pacientes | Petshop</ui:define>
+    <ui:define name="title">Animais | Petshop</ui:define>
 
     <ui:define name="content">
         <div class="mb-4">
             <div class="text-sm font-semibold text-teal-700 mb-2">PETSHOP</div>
-            <h1 class="text-4xl font-bold text-teal-800 m-0">Pacientes</h1>
+            <h1 class="text-4xl font-bold text-teal-800 m-0">Animais</h1>
             <p class="text-color-secondary text-lg mt-2 mb-0">
-                Cadastre animais e seus donos e consulte os pacientes registrados.
+                Cadastre animais e seus donos e consulte os animais cadastrados.
             </p>
         </div>
 
         <div class="grid justify-content-between">
-            <div class="col-12">
-                <animal:formulario-animal id="cadastro" bean="#{animalBean}" styleClass="h-full" />
+            <div class="col-12 lg:col-5">
+                <animal:formulario-animal id="cadastroAnimal" bean="#{animalBean}" styleClass="h-full" />
             </div>
-            <div class="col-12">
-                <animal:tabela-animais id="lista" bean="#{animalBean}" styleClass="h-full" />
+            <div class="col-12 lg:col-7">
+                <animal:tabela-animais id="listaAnimais" bean="#{animalBean}" styleClass="h-full" />
             </div>
         </div>
     </ui:define>

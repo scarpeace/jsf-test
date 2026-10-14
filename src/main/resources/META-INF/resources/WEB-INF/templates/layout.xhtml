@@ -17,23 +17,17 @@
     <h:form id="frmmenu">
         <nav class="menu-bar">
             <p:menubar styleClass="flex">
-                <div>
-                <p:submenu label="Animais" >
-                    <p:menuitem value="Novo Animal" outcome="/index.xhtml"/>
-                    <p:menuitem value="Relação Animais" outcome="/index.xhtml"/>
-                    <p:menuitem value="Relação Donos" outcome="/index.xhtml"/>
+                <p:submenu label="Animais">
+                    <p:menuitem value="Gerenciar animais" outcome="/pages/animais.xhtml" />
                 </p:submenu>
 
-                <p:submenu label="Consultas" >
-                    <p:menuitem value="Nova Consulta" outcome="/index.xhtml" />
-                    <p:menuitem value="Calendário Consultas" outcome="/index.xhtml" />
-                    <p:menuitem value="Histórico Consultas" outcome="/index.xhtml" />
+                <p:submenu label="Consultas">
+                    <p:menuitem value="Consultas" outcome="/pages/consultas.xhtml" />
                 </p:submenu>
 
-                <p:submenu label="Funcionários" >
-                    <p:menuitem value="Novo Veterinário" outcome="/index.xhtml" />
+                <p:submenu label="Funcionários">
+                    <p:menuitem value="Veterinários" outcome="/pages/veterinarios.xhtml" />
                 </p:submenu>
-                </div>
                 <!-- logout opcional na menubar -->
                 <p:menuitem
                         icon="fa fas fa-sign-out-alt"

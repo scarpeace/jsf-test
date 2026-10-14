@@ -36,7 +36,7 @@ WHERE NOT EXISTS (
     SELECT 1 FROM dono WHERE email = 'tiago.mendonca@tutores.example'
 );
 
-INSERT INTO doutor (nome, crmv, telefone)
+INSERT INTO veterinario (nome, crmv, telefone)
 VALUES
     ('Dra. Helena Prado', 'CRMV-SP 48217', '(11) 99961-1201'),
     ('Dr. André Siqueira', 'CRMV-SP 39508', '(11) 99961-1202'),

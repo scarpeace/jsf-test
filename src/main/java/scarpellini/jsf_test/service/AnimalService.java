@@ -36,18 +36,34 @@ public class AnimalService {
                         new EntityNotFoundException("Animal não encontrado: " + id));
     }
 
-    @Transactional
-    public Animal cadastrar(Animal animal, Dono dono) {
-        Dono novoDono = donoRepo.save(dono);
-        Animal novoAnimal = new Animal(
-                animal.getNome(),
-                animal.getEspecie(),
-                animal.getRaca(),
-                animal.getDataNascimento(),
-                novoDono
-        );
+    @Transactional(readOnly = true)
+    public Animal buscarPorIdComDono(Long id) {
+        return animalRepository.findByIdComDono(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Animal não encontrado: " + id));
+    }
 
-        return animalRepository.save(novoAnimal);
+    @Transactional
+    public Animal cadastrar(Animal animal) {
+        animal.setDono(donoRepo.save(animal.getDono()));
+        return animalRepository.save(animal);
+    }
+
+    @Transactional
+    public Animal atualizar(Long id, Animal dados) {
+        Animal animal = buscarPorIdComDono(id);
+        Dono dono = animal.getDono();
+
+        animal.setNome(dados.getNome());
+        animal.setEspecie(dados.getEspecie());
+        animal.setRaca(dados.getRaca());
+        animal.setDataNascimento(dados.getDataNascimento());
+
+        dono.setNome(dados.getDono().getNome());
+        dono.setTelefone(dados.getDono().getTelefone());
+        dono.setEmail(dados.getDono().getEmail());
+
+        return animalRepository.save(animal);
     }
 
     @Transactional

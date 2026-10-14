@@ -34,6 +34,11 @@ public class AnimalBean implements Serializable {
     @Getter
     private List<AnimalResponse> animais;
 
+    @Getter
+    private boolean editandoAnimal;
+
+    private Long animalIdEmEdicao;
+
     // Inicialização da página
     @PostConstruct
     public void inicializar() {
@@ -44,16 +49,30 @@ public class AnimalBean implements Serializable {
     // Ações chamadas pela página
     public void novo() {
         animalRequest = new AnimalRequest();
+        animalIdEmEdicao = null;
+        editandoAnimal = false;
     }
 
-    public void criar() {
-        animalService.cadastrar(
-                animalRequest.toEntity(),
-                animalRequest.getDono().toEntity());
+    public void editar(Long id) {
+        animalRequest = AnimalRequest.fromEntity(animalService.buscarPorIdComDono(id));
+        animalIdEmEdicao = id;
+        editandoAnimal = true;
+    }
+
+    public void salvar() {
+        boolean estavaEditando = editandoAnimal;
+        if (estavaEditando) {
+            animalService.atualizar(animalIdEmEdicao, animalRequest.toEntity());
+        } else {
+            animalService.cadastrar(animalRequest.toEntity());
+        }
+
         listar();
         novo();
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro concluído", "Animal e dono cadastrados."));
+                new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        estavaEditando ? "Atualização concluída" : "Cadastro concluído",
+                        estavaEditando ? "Animal e dono atualizados." : "Animal e dono cadastrados."));
     }
 
     // Dados usados pelos componentes da página
