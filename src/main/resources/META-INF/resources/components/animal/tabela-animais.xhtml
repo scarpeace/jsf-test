@@ -44,8 +44,27 @@
                                          action="#{cc.attrs.bean.editar(animal.id)}"
                                          update=":cadastroAnimal:formulario"
                                          process="@this" />
+                        <p:commandButton icon="pi pi-trash"
+                                         title="Excluir"
+                                         styleClass="ui-button-text ui-button-danger"
+                                         action="#{cc.attrs.bean.excluir(animal.id)}"
+                                         update="@form :cadastroAnimal:formulario"
+                                         process="@this">
+                            <p:confirm header="Confirmar exclusão"
+                                       message="Deseja excluir #{animal.nome}?"
+                                       icon="pi pi-exclamation-triangle" />
+                        </p:commandButton>
                     </p:column>
                 </p:dataTable>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true">
+                    <p:commandButton value="Cancelar"
+                                     type="button"
+                                     styleClass="ui-confirmdialog-no ui-button-flat" />
+                    <p:commandButton value="Excluir"
+                                     type="button"
+                                     styleClass="ui-confirmdialog-yes ui-button-danger" />
+                </p:confirmDialog>
             </h:form>
         </p:panel>
     </div>

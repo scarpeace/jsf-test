@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.dao.DataIntegrityViolationException;
 import scarpellini.jsf_test.domain.Especie;
 import scarpellini.jsf_test.service.AnimalService;
 import scarpellini.jsf_test.web.dto.AnimalRequest;
@@ -73,6 +74,23 @@ public class AnimalBean implements Serializable {
                 new FacesMessage(FacesMessage.SEVERITY_INFO,
                         estavaEditando ? "Atualização concluída" : "Cadastro concluído",
                         estavaEditando ? "Animal e dono atualizados." : "Animal e dono cadastrados."));
+    }
+
+    public void excluir(Long id) {
+        try {
+            animalService.excluir(id);
+            if (id.equals(animalIdEmEdicao)) {
+                novo();
+            }
+            listar();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Exclusão concluída", "Animal excluído."));
+        } catch (DataIntegrityViolationException e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Não foi possível excluir",
+                            "Este animal possui consultas vinculadas."));
+        }
     }
 
     // Dados usados pelos componentes da página
