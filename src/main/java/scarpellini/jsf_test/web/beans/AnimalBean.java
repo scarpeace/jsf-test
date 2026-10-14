@@ -22,9 +22,11 @@ public class AnimalBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    // Dependências
     @Inject
     private AnimalService animalService;
 
+    // Estado da tela
     @Getter
     @Setter
     private AnimalRequest animalRequest;
@@ -32,22 +34,14 @@ public class AnimalBean implements Serializable {
     @Getter
     private List<AnimalResponse> animais;
 
-    public Especie[] getEspecies() {
-        return Especie.values();
-    }
-
+    // Inicialização da página
     @PostConstruct
     public void inicializar() {
         novo();
         listar();
     }
 
-    public void listar() {
-        animais = animalService.listarTodosComDono().stream()
-                .map(AnimalResponse::toDto)
-                .toList();
-    }
-
+    // Ações chamadas pela página
     public void novo() {
         animalRequest = new AnimalRequest();
     }
@@ -60,5 +54,16 @@ public class AnimalBean implements Serializable {
         novo();
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro concluído", "Animal e dono cadastrados."));
+    }
+
+    // Dados usados pelos componentes da página
+    public void listar() {
+        animais = animalService.listarTodosComDono().stream()
+                .map(AnimalResponse::toDto)
+                .toList();
+    }
+
+    public Especie[] getEspecies() {
+        return Especie.values();
     }
 }

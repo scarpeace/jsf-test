@@ -4,50 +4,36 @@
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core"
       xmlns:p="primefaces"
-
 >
 
 <h:head>
     <title><ui:insert name="title">Petshop</ui:insert></title>
 
 <!--    Primeflex-->
-<!--    <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>-->
-
-    <!--    Estilos SESC-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/erp/style.css" />
-    <h:outputScript library="js" name="${pageContext.request.contextPath}/js/erp/funcoes.js" target="head"/>
+    <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>
 </h:head>
 
 <h:body styleClass="surface-ground text-color m-0">
-
     <h:form id="frmmenu">
         <nav class="menu-bar">
-
-            <p:menubar styleClass="w-100">
-                <p:submenu label="Componentes" >
-                    <p:menuitem value="Formulários" outcome="/index.xhtml"/>
-                    <p:menuitem value="Crud" outcome="/index.xhtml" />
-                    <p:menuitem value="Slide Dialog" outcome="/index.xhtml" />
+            <p:menubar styleClass="flex">
+                <div>
+                <p:submenu label="Animais" >
+                    <p:menuitem value="Novo Animal" outcome="/index.xhtml"/>
+                    <p:menuitem value="Relação Animais" outcome="/index.xhtml"/>
+                    <p:menuitem value="Relação Donos" outcome="/index.xhtml"/>
                 </p:submenu>
 
-                <p:submenu label="Erros" >
-                    <p:menuitem value="Browser" outcome="/index.xhtml" />
-                    <p:menuitem value="Generic" outcome="/index.xhtml" />
-                    <p:menuitem value="Not Found" outcome="/index.xhtml" />
-                    <p:menuitem value="Permissão" outcome="/index.xhtml" />
-                    <p:menuitem value="Sessão" outcome="/index.xhtml" />
-                    <p:menuitem value="SQL" outcome="/index.xhtml" />
+                <p:submenu label="Consultas" >
+                    <p:menuitem value="Nova Consulta" outcome="/index.xhtml" />
+                    <p:menuitem value="Calendário Consultas" outcome="/index.xhtml" />
+                    <p:menuitem value="Histórico Consultas" outcome="/index.xhtml" />
                 </p:submenu>
 
-                <p:submenu label="Erros" >
-                    <p:menuitem value="Browser" outcome="/index.xhtml" />
-                    <p:menuitem value="Generic" outcome="/index.xhtml" />
-                    <p:menuitem value="Not Found" outcome="/index.xhtml" />
-                    <p:menuitem value="Permissão" outcome="/index.xhtml" />
-                    <p:menuitem value="Sessão" outcome="/index.xhtml" />
-                    <p:menuitem value="SQL" outcome="/index.xhtml" />
+                <p:submenu label="Funcionários" >
+                    <p:menuitem value="Novo Veterinário" outcome="/index.xhtml" />
                 </p:submenu>
-
+                </div>
                 <!-- logout opcional na menubar -->
                 <p:menuitem
                         icon="fa fas fa-sign-out-alt"
