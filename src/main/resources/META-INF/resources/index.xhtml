@@ -1,43 +1,17 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:dono="jakarta.faces.composite/components/dono"
-      xmlns:doutor="jakarta.faces.composite/components/doutor">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/layout.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+>
 
-<h:head>
-    <title>Cadastros do petshop</title>
-    <h:outputStylesheet
-            library="webjars"
-            name="primeflex/4.0.0/primeflex.min.css"/>
-</h:head>
+    <ui:define name="title">
+        Início | Petshop
+    </ui:define>
 
-<h:body styleClass="surface-ground text-color m-0">
-    <div class="w-full p-5 md:p-6">
-        <div class="mb-3">
-            <div class="text-sm font-semibold text-teal-700 mb-2">PETSHOP</div>
-            <h1 class="text-4xl font-bold text-teal-800 m-0">Cadastros do petshop</h1>
-            <p class="text-color-secondary text-lg mt-2 mb-0">
-                Gerencie os donos e doutores do petshop.
-            </p>
-        </div>
+    <ui:define name="content">
+        <h1>Implementando</h1>
+    </ui:define>
 
-        <div class="grid justify-content-between mb-6">
-            <div class="col-12 lg:col-4">
-                <dono:formulario-dono id="cadastro" bean="#{donoBean}" styleClass="h-full"/>
-            </div>
-            <div class="col-12 lg:col-8">
-                <dono:tabela-donos id="lista" bean="#{donoBean}" styleClass="h-full"/>
-            </div>
-        </div>
-
-        <div class="grid">
-            <div class="col-12 lg:col-4">
-                <doutor:formulario-doutor id="cadastroDoutor" bean="#{doutorBean}" styleClass="h-full w-"/>
-            </div>
-            <div class="col-12 lg:col-8">
-                <doutor:tabela-doutores id="listaDoutores" bean="#{doutorBean}" styleClass="h-full"/>
-            </div>
-        </div>
-    </div>
-</h:body>
-</html>
+</ui:composition>

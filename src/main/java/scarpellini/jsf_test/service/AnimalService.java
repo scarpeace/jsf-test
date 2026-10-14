@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import scarpellini.jsf_test.domain.Animal;
 import scarpellini.jsf_test.domain.Dono;
 import scarpellini.jsf_test.repository.AnimalRepository;
+import scarpellini.jsf_test.repository.DonoRepository;
 
 import java.util.List;
 
@@ -13,19 +14,19 @@ import java.util.List;
 public class AnimalService {
 
     private final AnimalRepository animalRepository;
-    private final DonoService donoService;
+    private final DonoRepository donoRepo;
 
     public AnimalService(
             AnimalRepository animalRepository,
-            DonoService donoService
+            DonoRepository donoRepo
     ) {
         this.animalRepository = animalRepository;
-        this.donoService = donoService;
+        this.donoRepo = donoRepo;
     }
 
     @Transactional(readOnly = true)
-    public List<Animal> listarTodos() {
-        return animalRepository.findAll();
+    public List<Animal> listarTodosComDono() {
+        return animalRepository.findAllComDono();
     }
 
     @Transactional(readOnly = true)
@@ -35,16 +36,32 @@ public class AnimalService {
                         new EntityNotFoundException("Animal não encontrado: " + id));
     }
 
-    @Transactional
-    public Animal salvar(Animal animal) {
-        if (animal.getDono() == null || animal.getDono().getId() == null) {
-            throw new IllegalArgumentException(
-                    "O animal precisa possuir um dono"
-            );
-        }
+    @Transactional(readOnly = true)
+    public Animal buscarPorIdComDono(Long id) {
+        return animalRepository.findByIdComDono(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Animal não encontrado: " + id));
+    }
 
-        Dono dono = donoService.buscarPorId(animal.getDono().getId());
-        animal.setDono(dono);
+    @Transactional
+    public Animal cadastrar(Animal animal) {
+        animal.setDono(donoRepo.save(animal.getDono()));
+        return animalRepository.save(animal);
+    }
+
+    @Transactional
+    public Animal atualizar(Long id, Animal dados) {
+        Animal animal = buscarPorIdComDono(id);
+        Dono dono = animal.getDono();
+
+        animal.setNome(dados.getNome());
+        animal.setEspecie(dados.getEspecie());
+        animal.setRaca(dados.getRaca());
+        animal.setDataNascimento(dados.getDataNascimento());
+
+        dono.setNome(dados.getDono().getNome());
+        dono.setTelefone(dados.getDono().getTelefone());
+        dono.setEmail(dados.getDono().getEmail());
 
         return animalRepository.save(animal);
     }

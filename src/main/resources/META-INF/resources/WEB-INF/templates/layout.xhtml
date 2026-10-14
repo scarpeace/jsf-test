@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces"
+>
+
+<h:head>
+    <title><ui:insert name="title">Petshop</ui:insert></title>
+
+<!--    Primeflex-->
+    <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>
+</h:head>
+
+<h:body styleClass="surface-ground text-color m-0">
+    <h:form id="frmmenu">
+        <nav class="menu-bar">
+            <p:menubar styleClass="flex">
+                <p:submenu label="Animais">
+                    <p:menuitem value="Gerenciar animais" outcome="/pages/animais.xhtml" />
+                </p:submenu>
+
+                <p:submenu label="Consultas">
+                    <p:menuitem value="Consultas" outcome="/pages/consultas.xhtml" />
+                </p:submenu>
+
+                <p:submenu label="Funcionários">
+                    <p:menuitem value="Veterinários" outcome="/pages/veterinarios.xhtml" />
+                </p:submenu>
+                <!-- logout opcional na menubar -->
+                <p:menuitem
+                        icon="fa fas fa-sign-out-alt"
+                        iconPos="right"
+                        styleClass="f-right"
+                        value="Sair"
+                        process="@this"
+                        immediate="true"
+                        update="@none"
+                        containerStyleClass="f-right" />
+            </p:menubar>
+        </nav>
+    </h:form>
+
+    <main class="w-full p-5 md:p-6">
+        <ui:insert name="content"/>
+    </main>
+</h:body>
+</html>

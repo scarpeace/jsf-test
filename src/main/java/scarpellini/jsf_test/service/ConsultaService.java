@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import scarpellini.jsf_test.domain.Animal;
 import scarpellini.jsf_test.domain.Consulta;
-import scarpellini.jsf_test.domain.Doutor;
+import scarpellini.jsf_test.domain.Veterinario;
 import scarpellini.jsf_test.repository.ConsultaRepository;
 
 import java.util.List;
@@ -15,16 +15,16 @@ public class ConsultaService {
 
     private final ConsultaRepository consultaRepository;
     private final AnimalService animalService;
-    private final DoutorService doutorService;
+    private final VeterinarioService veterinarioService;
 
     public ConsultaService(
             ConsultaRepository consultaRepository,
             AnimalService animalService,
-            DoutorService doutorService
+            VeterinarioService veterinarioService
     ) {
         this.consultaRepository = consultaRepository;
         this.animalService = animalService;
-        this.doutorService = doutorService;
+        this.veterinarioService = veterinarioService;
     }
 
     @Transactional(readOnly = true)
@@ -56,21 +56,21 @@ public class ConsultaService {
             );
         }
 
-        if (consulta.getDoutor() == null
-                || consulta.getDoutor().getId() == null) {
+        if (consulta.getVeterinario() == null
+                || consulta.getVeterinario().getId() == null) {
             throw new IllegalArgumentException(
-                    "A consulta precisa possuir um doutor"
+                    "A consulta precisa possuir um veterinário"
             );
         }
 
         Animal animal =
                 animalService.buscarPorId(consulta.getAnimal().getId());
 
-        Doutor doutor =
-                doutorService.buscarPorId(consulta.getDoutor().getId());
+        Veterinario veterinario =
+                veterinarioService.buscarPorId(consulta.getVeterinario().getId());
 
         consulta.setAnimal(animal);
-        consulta.setDoutor(doutor);
+        consulta.setVeterinario(veterinario);
 
         return consultaRepository.save(consulta);
     }

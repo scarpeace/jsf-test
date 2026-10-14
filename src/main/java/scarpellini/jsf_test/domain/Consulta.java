@@ -26,8 +26,8 @@ public class Consulta {
     private Animal animal;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "doutor_id", nullable = false)
-    private Doutor doutor;
+    @JoinColumn(name = "veterinario_id", nullable = false)
+    private Veterinario veterinario;
 
     public Long getId() {
         return id;
@@ -57,11 +57,11 @@ public class Consulta {
         this.animal = animal;
     }
 
-    public Doutor getDoutor() {
-        return doutor;
+    public Veterinario getVeterinario() {
+        return veterinario;
     }
 
-    public void setDoutor(Doutor doutor) {
-        this.doutor = doutor;
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 }

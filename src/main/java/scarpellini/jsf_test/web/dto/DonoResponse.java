@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class DonoResponseDto implements Serializable {
+public class DonoResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,8 +17,8 @@ public class DonoResponseDto implements Serializable {
     private String telefone;
     private String email;
 
-    public static DonoResponseDto toDto(Dono dono) {
-        DonoResponseDto dto = new DonoResponseDto();
+    public static DonoResponse toDto(Dono dono) {
+        DonoResponse dto = new DonoResponse();
         dto.setId(dono.getId());
         dto.setNome(dono.getNome());
         dto.setTelefone(dono.getTelefone());
